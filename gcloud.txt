@@ -1,0 +1,1 @@
+gcloud beta functions deploy paperwala --stage-bucket paperwala-f02b7.appspot.com --trigger-http

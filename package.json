@@ -1,0 +1,13 @@
+{
+  "name": "paperwala",
+  "description": "Delivers personalized news for you",
+  "version": "0.0.1",
+  "author": "Google Inc.",
+  "engines": {
+    "node": "~4.2"
+  },
+  "dependencies": {
+    "aylien_textapi": "^0.6.0",
+    "xmlhttprequest": "^1.8.0"
+  }
+}

@@ -1,0 +1,10 @@
+
+let topic = 'bitcoin ';
+if(topic.localeCompare('general') == true){
+         let path = '/v2/top-headlines?sources=the-times-of-india,the-hindu&apiKey=8dbb480cec64459d8c609c263bbb2aad';}
+    else{
+	     let path = '/v2/everything?q='+ topic + '&language=en&apiKey=8dbb480cec64459d8c609c263bbb2aad';
+		
+		 }
+		 
+		  console.log('path:'+path);

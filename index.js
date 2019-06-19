@@ -3,47 +3,23 @@ const http = require('http');
 const host =  "newsapi.org";
 
 exports.paperwala = (req, res) => {
-  // Get the city and date from the request
-  //let topic = req.body.result.parameters['topic']; // city is a required param
-   
-  // Get the date for the weather forecast (if present)
-  //let date = '';
-  //if (req.body.result.parameters['date']) {
-    //date = req.body.result.parameters['date'];
-   // console.log('topic: ' + topic);
-  //console.log('topic:'+topic);
   // Call the weather API
   callWeatherApi(req).then((output) => {
-    // Return the results of the weather API to Dialogflow
-   
+    // Return the results of the weather API to Dialogflow   
 	res.setHeader('Content-Type', 'application/json');
 	let num = req.body.result.parameters['ordinal']; 
 	console.log('ordinal:'+num);   
-	//console.log('Before if..:'+response1[num])
 	let output1=output[0];
 	if(num!=null){
 	output1 = 'Ok then , I got your covered '+output[1][1];}
-	
-		
+	  
 	 console.log('output final:'+output1);
 	 res.send(JSON.stringify({ 'speech': output1, 'displayText': output1 }));
-	
-	//console.log('response:'+req.body.result.parameters['response'])
-//	output = 'Ok then , here is the full story '+'    '+ response1[num] ;
-	//console.log('output2:'+response1);
 
-	//res.setHeader('Content-Type', 'application/json');
-	//res.send(JSON.stringify({ 'speech': output, 'displayText': output }));
   }).catch((error) => {
     // If there is an error let the user know
-   // res.setHeader('Content-Type', 'application/json');
-    //res.send(JSON.stringify({ 'speech': error, 'displayText': error }));
+
   });
- //let num = req.body.result.parameters['ordinal']; 
-//console.log('ordinal:'+topic);
- //res.send(JSON.stringify({ 'speech': response1[num], 'displayText': output }));
-
-
  };
 function callWeatherApi(req) {
   return new Promise((resolve, reject) => {
@@ -86,17 +62,8 @@ function callWeatherApi(req) {
 	if (error === null) {
 		output1[0]=response.title;
 		response1[0]=response.article;
-		//console.log('i:'+i);
-		//if(i>=3){
-			//let output='Here is the latest news. The Headlines are       '+ output2[0] + '         ' +  output2[1] + '          ' + output2[2] + '        ' + output2[3] + '        '  + 'Please tell in which headline are you interested in ';	
-			//console.log('i1:'+i)
-			//console.log('output'+output);
-			//console.log('response:'+ response1)
-			//resolve(output,response1);
 		}
-	});
-	
-	
+	});	
 	url = url1[1];
 	textapi.extract({
 	url:url
@@ -104,17 +71,8 @@ function callWeatherApi(req) {
 	if (error === null) {
 		output1[1]=response.title;
 		response1[1]=response.article;
-		//console.log('i:'+i);
-		//if(i>=3){
-			//let output='Here is the latest news. The Headlines are       '+ output2[0] + '         ' +  output2[1] + '          ' + output2[2] + '        ' + output2[3] + '        '  + 'Please tell in which headline are you interested in ';	
-			//console.log('i1:'+i)
-			//console.log('output'+output);
-			//console.log('response:'+ response1)
-			//resolve(output,response1);
 		}
 	});
-	
-	
 	
 	url = url1[2];
 	textapi.extract({
@@ -123,18 +81,8 @@ function callWeatherApi(req) {
 	if (error === null) {
 		output1[2]=response.title;
 		response1[2]=response.article;
-		//console.log('i:'+i);
-		//if(i>=3){
-			//let output='Here is the latest news. The Headlines are       '+ output2[0] + '         ' +  output2[1] + '          ' + output2[2] + '        ' + output2[3] + '        '  + 'Please tell in which headline are you interested in ';	
-			//console.log('i1:'+i)
-			//console.log('output'+output);
-			//console.log('response:'+ response1)
-			//resolve(output,response1);
 		}
 	});
-	
-	
-	
 	
 	url = url1[3];
 	textapi.extract({
@@ -143,24 +91,11 @@ function callWeatherApi(req) {
 	if (error === null) {
 		output1[3]=response.title;
 		response1[3]=response.article;
-		//console.log('i:'+i);
-		//if(i>=3){
 			let output=['Here is the latest news. The Headlines are , First headline,  '+ output2[0] + '  ,Second headline,  ' +  output2[1] + '  ,Third headline,  ' + output2[2] + '  ,Fourth headline,  ' + output2[3] + '     ,   '  + 'Please tell in which headline are you interested in',response1];	
-			//console.log('i1:'+i)
 			console.log('output'+output);
-			//console.log('response:'+ response1)
 			resolve(output);
 		}
 	});
-	
-	//}	
-		
-	  
-	  
-	  
-	  
-	  
-	  
       });
       res.on('error', (error) => {
         reject(error);
